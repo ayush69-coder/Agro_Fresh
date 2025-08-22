@@ -1,0 +1,21 @@
+body,html
+{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+.main-div{
+    flex: 1;
+}
+
+*{
+/* font-family: c */
+box-sizing: border-box;
+
+}
+#page{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+      {%include 'agro_app/common/common_css.html'%}
+      <style >
+/* /* .bgimage {
+    background-image: url("{% static 'agro_app/images/bgf.png' %}");
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    /* background-size: cover; */ */
+
+/* }  */
+.about-flex{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    
+}
+.text-height{
+    height: 100px;
+    width: 100px;
+}
+h7{
+    color: rgb(80, 153, 71);
+    font-size: medium;
+}
+.div-size{
+    height: 500px;
+    width: 100%;
+}
+</style>
+<body class="bgimage">
+
+    <!-- nav bar starts here -->
+    {%include 'agro_app/common/header.html' %}
+    <!-- nav bar ends here -->
+     <div class="about-flex">
+    <div >
+        <h1 style="text-align: center;">Know about us </h1>
+        <h2 style="text-align: center;;">Our mission</h2>
+        <div class="div-size" style="margin-top: 20px;font-size: large;">
+        <h7 >At agro_fresh, our mission is to empower small farmers by bridging the gap between traditional farming
+            practices and modern agricultural innovation. We believe that every farmer—regardless of their land
+            size—deserves access to knowledge, resources, and a supportive community.<br>
+            We strive to:<br>
+            - 💡 Promote sustainable farming techniques tailored for small-scale agriculture<br>
+            - 🤝 Facilitate connections among farmers, mentors, and buyers<br>
+            - 📚 Share practical and easy-to-understand guides that enhance productivity<br>
+            - 🌱 Encourage environmentally responsible practices for long-term prosperity<br>
+            By fostering resilience and independence, we aim to transform farming into a thriving and dignified
+            livelihood for every smallholder who visits our platform.
+
+        </h7>
+        <div id="page">
+
+
+        </div>
+        
+            </div>
+            <div class="div-size">
+        <h2  style="text-align: center;">Our vision</h2>
+        <h7 >
+            At agro_fresh, our mission is to empower small farmers by bridging the gap between traditional farming
+            practices and modern agricultural innovation. We believe that every farmer—regardless of their land
+            size—deserves access to knowledge, resources, and a supportive community.
+            We strive to:<br>
+            - 💡 Promote sustainable farming techniques tailored for small-scale agriculture<br>
+            - 🤝 Facilitate connections among farmers, mentors, and buyers<br>
+            - 📚 Share practical and easy-to-understand guides that enhance productivity<br>
+            - 🌱 Encourage environmentally responsible practices for long-term prosperity<br>
+            By fostering resilience and independence, we aim to transform farming into a thriving and dignified
+            livelihood for every smallholder who visits our platform
+
+        </h7>
+            </div>
+            <div  class="div-size">
+        <h2 style="text-align: center;;">Our goal</h2>
+        <h7 style="margin-top: 0px; line-height: 20px;" >
+            At agro_fresh, we are committed to giving small farmers control over their livelihoods by connecting them
+            directly to buyers—without brokerage, middlemen, or hidden fees.
+            Our app is built to:<br>
+            - 🛒 Enable farmers to sell their produce online with zero brokerage<br>
+            - 🤝 Create a seamless link between farmers and buyers who value fresh, local produce<br>
+            - 📱 Offer a simple, farmer-friendly digital marketplace accessible to all skill levels<br>
+            - 💰 Ensure transparent pricing so farmers earn what they truly deserve<br>
+            - 🌾 Promote dignity, independence, and growth for small-scale cultivators<br>
+            We believe that when farmers can reach buyers without barriers, agriculture thrives and communities grow
+            stronger. Our platform isn’t just an app—it’s a movement toward fair trade and farmer-first innovation.
+
+            Want to add some flavor with regional pride or specific crops? Or we could throw in a real success story.
+            I’m all ears! 🌿💬
+
+        </h7>
+
+</div>
+    </div>
+     </div>
+
+
+    {%include 'agro_app/common/footer.html'%}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+{% load static  %}
+<!-- to load content from static folder -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    {% include 'agro_app/common/common_css.html' %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+   
+    <style>
+      .card i {
+        font-size: 2rem;
+        color: #28a745;
+      }
+      .section-title {
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+    </style>
+
+</head>
+<body style="background-color: aquamarine;">
+<div class="main-div">
+  <div class="container py-4">
+
+    <h1 class="text-center text-success mb-5">🍃 Seasonal Fruits and Vegetables</h1>
+  
+    <!-- Season-wise Fruits Section -->
+    <h2 class="section-title text-primary">🍎 Fruits by Season</h2>
+    <div class="row g-4">
+      <!-- Summer Fruits -->
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">☀️ Summer</h5>
+            <ul class="list-unstyled mb-0">
+              <li>🥭 Mango</li>
+              <li>🍉 Watermelon</li>
+              <li>🍈 Lychee</li>
+              <li>🍈 Muskmelon</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Winter Fruits -->
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">❄️ Winter</h5>
+            <ul class="list-unstyled mb-0">
+              <li>🍎 Apple</li>
+              <li>🍊 Orange</li>
+              <li>🥝 Guava</li>
+              <li>🍈 Papaya</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Monsoon Fruits -->
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">🌧️ Monsoon</h5>
+            <ul class="list-unstyled mb-0">
+              <li>🫐 Jamun</li>
+              <li>🍐 Pear</li>
+              <li>🍑 Plums</li>
+              <li>🍒 Cherries</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Season-wise Vegetables Section -->
+    <h2 class="section-title text-success">🥕 Vegetables by Season</h2>
+    <div class="row g-4">
+      <!-- Summer Vegetables -->
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">☀️ Summer</h5>
+            <ul class="list-unstyled mb-0">
+              <li>🥒 Bottle Gourd</li>
+              <li>🥬 Bitter Gourd</li>
+              <li>🥒 Cucumber</li>
+              <li>🌶Lady Finger</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Winter Vegetables -->
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">❄️ Winter</h5>
+            <ul class="list-unstyled mb-0">
+              <li>🥕 Carrot</li>
+              <li>🥬 Spinach</li>
+              <li>🟢 Peas</li>
+              <li>🥦 Broccoli</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Monsoon Vegetables -->
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">🌧️ Monsoon</h5>
+            <ul class="list-unstyled mb-0">
+              <li>🌽 Corn</li>
+              <li>🎃 Pumpkin</li>
+              <li>🍆 Brinjal</li>
+              <li>🫘 Beans</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+ </div>
+
+ {% include 'agro_app/common/footer.html'%}
+
+ 
+<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+

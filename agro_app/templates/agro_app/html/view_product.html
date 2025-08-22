@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+
+    <style>
+        .flex-container {
+            display: flex;
+            width: 100%;
+            height: auto;
+            background-color: bisque;
+            flex-wrap:wrap;
+        }
+
+        .item-div {
+            width: 300px;
+            height: 400px;
+            background-color: aliceblue;
+            margin-left: 20px;
+        }
+
+        .item-div img {
+            width: 100%;
+            height: 200px;
+
+        }
+    </style>
+    {% include 'agro_app/common/common_css.html' %}
+
+    
+</head>
+
+<body>
+    <div class="main-div">
+        <div class="conatainer-fluid" style="background-color: #9b648e;">
+            <h3 style="text-align: center;">
+                hello welcome to agro_fresh<br>
+                "we deliver fresh vegetable everywhere "
+            </h3>
+        </div>
+        <!-- nav bar code start -->
+        {% include 'agro_app/common/header.html' %}
+
+
+
+        <!-- nave bar code ends -->
+        <h2 style="text-align: center;">Products Available</h2>
+           <form action="/view_products/" method="post">
+            {%csrf_token%}
+        <div style="width: 20%;margin-left: 40%;display: flex;">
+         
+                
+            <select class="form-select" aria-label="Default select example" name="category"
+                style="margin-top: 0px;margin-bottom: 20px;">
+                <option selected>Product category</option>
+                <option value="Grains">grain</option>
+                <option value="Pulses">Pulses</option>
+                <option value="Vegetables">vegetable</option>
+                <option value="Fruits">Fruits</option>
+            </select>
+             <button type="submit" class="btn btn-success" style="width: 100px;height: 38px;">Submit</button>
+           
+        </div>
+          </form>
+
+
+          
+        <div class="flex-container">
+          {%if product_key %} 
+            {%for p in product_key%}
+            <div class="item-div">
+                <img src="/media/{{p.product_pic}}" alt="">
+                <h6>Product Name: {{p.product_name}}</h6>
+                <h6>Product category: {{p.product_category}}</h6>
+                <h6>Product price: {{p.product_price}}</h6>
+                <h6>FarmerName: {{p.farmer.name}}</h6>
+                <h6>Farmercity: {{p.farmer.city}}</h6>
+                <h6><a href="https://wa.me/+91{{p.farmer.phone}}">Whatsapp </a> </h6>
+                <!-- <h6>Product Name: {{p.product_name}}</h6> -->
+
+            </div>
+            {%endfor%}
+              {%else%}
+
+            <h3 style="text-align: center;">No Products Available😊</h3>
+            {% endif %}
+            </div>
+          
+            
+        
+        </div>
+
+    
+    <!-- foooter code  start -->
+    {%include 'agro_app/common/footer.html'%}
+    <!-- footer code ends -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

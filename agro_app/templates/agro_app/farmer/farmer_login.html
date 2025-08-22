@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login form</title>
+    {%include 'agro_app/common/common_css.html'%}
+    <style>
+        .flex-container {
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            /* background-color: aqua; */
+            justify-content: center;
+        }
+
+        .div-img {
+            width: 25%;
+            height: 250px;
+            background-color: rgb(170, 102, 102);
+            border: 2px solid black;
+            border-radius: 30%;
+        }
+
+        .div-form {
+            width: 30%;
+            height: 300px;
+            /* background-color: aquamarine; */
+            border: 2px solid black;
+            padding: 65px;
+
+        }
+
+        .div-img img {
+            width: 100%;
+            height: 100%;
+            border: 2px solid black;
+            border-radius: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    {%include 'agro_app/common/header.html'%}
+
+
+    <div class="main-div">
+        <div class="text-center" style="margin: auto;">
+            <img src="{% static 'agro_app/images/Login.gif'%}" alt="">
+
+        </div>
+         {% if messages %}
+        {% for m in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 50%;margin: auto;text-align: center;">
+            <strong>{{m}}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        {% endfor %}
+        {% endif %}
+        <!-- flex box code start -->
+        <div class="flex-container">
+            <div class="div-img">
+                <img src="{%static 'agro_app/images/farmer2.jpg'%}" alt="">
+
+            </div>
+            <div class="div-form">
+                <form action="/farmer_login/" method="post">
+                    {%csrf_token%}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
+                        <input type="email" class="form-control" placeholder="Username" name="email" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                        <input type="password" class="form-control" placeholder="password" name="password" required>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn danger">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <!-- flex box code ends -->
+    </div>
+
+    {% include 'agro_app/common/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

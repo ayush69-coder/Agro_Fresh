@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    {%include 'agro_app/common/common_css.html'%}
+    <style>
+        .feedback-div
+        {
+        
+        display: flex;
+        margin-left:50px;
+        flex-wrap:wrap;
+        margin-top: 30px;
+        
+        }
+        .feedback-card{
+        
+        width:350px;
+        height: 300px;
+        margin:15px;
+        /* border: 3px solid red; */
+        border-radius: 10px;
+        transition: transform 0.5s; 
+        box-shadow:0 8px 16px rgb(0,0,0.8);
+        margin-bottom: 90px;
+        margin-top: 90px;
+        
+        }
+        .feedback-card img{
+        
+        width:40%;
+        height: 45%;
+        margin-top: -80px;
+        margin-left: 80px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        border:2px solid black;
+        display: inline;
+        margin-right: 10px;
+        }
+          
+        .feedback-card:hover {
+                    transform: scale(1.1);
+                  /*   box-shadow: 0 8px 16px rgba(220, 7, 7, 0.8); */
+                    z-index: 10; /* Bring the hovered card to the front */
+                }
+        
+        
+                h6{
+
+                  color:blueviolet;
+                  font-family: Verdana;
+                  /* text-align: center; */
+                  margin-left: 10px;
+                }
+                .w-100{
+                    height: 100vh;
+                }
+
+    .image{
+       background-image: url( "{% static 'agro_app/images/bg2.jpg '%}");
+       background-size: cover;
+    }
+        
+            
+
+
+    </style>
+</head>
+
+<body>
+    <div class="main-div">
+                {% include 'agro_app/common/header.html' %}
+        <div class="conatainer-fluid" style="background-color:rgba(96, 150, 120,0.500);">
+     <marquee behavior="alternate">       <h3 style="color: rgb(13, 105, 21);margin-bottom: 0px;">
+                Welcome to Agro Fresh
+               
+            </h3></marquee>
+        </div>
+          <!-- carousel code start -->
+          <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'agro_app/images/img3.png' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'agro_app/images/img2.png' %}" class="d-block w-100" alt="">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'agro_app/images/img1.png' %}" class="d-block w-100" alt="">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+         <!-- carousel code ends -->
+          <hr style="border: 2px solid black;">
+        <!-- nav bar code start -->
+
+        <div class="container">
+
+
+        </div>
+        <div class="image">
+        <div class="fluid-container d-flex justify-content-center">
+            <h1 style="margin-top: 10px;">Customer Feedback</h1>
+        </div>
+        <div class="feedback-div" >
+            {%for f in feedback_key%}
+            <div class="feedback-card">
+                <!-- <img src="/media/{{f.profile_pic}}" alt=""> -->
+                <h6>Rating:{{f.rating}}</h6>
+                <h6>Review:{{f.remarks}}</h6>
+                <h6>posted by:{{f.name}}</h6>
+                <h6>email:{{f.email}}</h6>
+
+            </div>
+
+
+
+
+            {%endfor%}
+        </div>
+
+</div>
+
+        <!-- nave bar code ends -->
+       
+    </div>
+    <!-- foooter code  start -->
+    {%include 'agro_app/common/footer.html'%}
+    <!-- footer code ends -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
