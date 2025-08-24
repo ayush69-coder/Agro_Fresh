@@ -7,105 +7,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Products</title>
 
+    {% include 'agro_app/common/common_css.html' %}
     <style>
-        .flex-container {
-            display: flex;
-            width: 100%;
-            height: auto;
-            background-color: bisque;
-            flex-wrap:wrap;
+        .item-div {
+            background-color: aliceblue;
+            border-radius: 10px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
         }
 
-        .item-div {
-            width: 300px;
-            height: 400px;
-            background-color: aliceblue;
-            margin-left: 20px;
+        .item-div:hover {
+            transform: scale(1.03);
         }
 
         .item-div img {
             width: 100%;
             height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
 
+        .header-banner {
+            background-color: #9b648e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .filter-form {
+            max-width: 400px;
+            margin: 20px auto;
         }
     </style>
-    {% include 'agro_app/common/common_css.html' %}
-
-    
 </head>
 
 <body>
     <div class="main-div">
-        <div class="conatainer-fluid" style="background-color: #9b648e;">
-            <h3 style="text-align: center;">
-                hello welcome to agro_fresh<br>
-                "we deliver fresh vegetable everywhere "
+        <!-- Banner -->
+        <div class="header-banner">
+            <h3>
+                Hello, welcome to Agro Fresh 🌿<br>
+                "We deliver fresh vegetables everywhere"
             </h3>
         </div>
-        <!-- nav bar code start -->
+
+        <!-- Navbar -->
         {% include 'agro_app/common/header.html' %}
 
+        <!-- Products Heading -->
+        <h2 class="text-center mt-3">Products Available</h2>
 
-
-        <!-- nave bar code ends -->
-        <h2 style="text-align: center;">Products Available</h2>
-           <form action="/view_products/" method="post">
+        <!-- Filter Form -->
+        <form action="/view_products/" method="post" class="filter-form">
             {%csrf_token%}
-        <div style="width: 20%;margin-left: 40%;display: flex;">
-         
-                
-            <select class="form-select" aria-label="Default select example" name="category"
-                style="margin-top: 0px;margin-bottom: 20px;">
-                <option selected>Product category</option>
-                <option value="Grains">grain</option>
-                <option value="Pulses">Pulses</option>
-                <option value="Vegetables">vegetable</option>
-                <option value="Fruits">Fruits</option>
-            </select>
-             <button type="submit" class="btn btn-success" style="width: 100px;height: 38px;">Submit</button>
-           
-        </div>
-          </form>
-
-
-          
-        <div class="flex-container">
-          {%if product_key %} 
-            {%for p in product_key%}
-            <div class="item-div">
-                <img src="/media/{{p.product_pic}}" alt="">
-                <h6>Product Name: {{p.product_name}}</h6>
-                <h6>Product category: {{p.product_category}}</h6>
-                <h6>Product price: {{p.product_price}}</h6>
-                <h6>FarmerName: {{p.farmer.name}}</h6>
-                <h6>Farmercity: {{p.farmer.city}}</h6>
-                <h6><a href="https://wa.me/+91{{p.farmer.phone}}">Whatsapp </a> </h6>
-                <!-- <h6>Product Name: {{p.product_name}}</h6> -->
-
+            <div class="input-group">
+                <select class="form-select" name="category" required>
+                    <option selected disabled>Product category</option>
+                    <option value="Grains">Grains</option>
+                    <option value="Pulses">Pulses</option>
+                    <option value="Vegetables">Vegetables</option>
+                    <option value="Fruits">Fruits</option>
+                </select>
+                <button type="submit" class="btn btn-success">Submit</button>
             </div>
-            {%endfor%}
-              {%else%}
+        </form>
 
-            <h3 style="text-align: center;">No Products Available😊</h3>
-            {% endif %}
+        <!-- Product Cards -->
+        <div class="container">
+            <div class="row">
+                {% if product_key %}
+                {% for p in product_key %}
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="item-div">
+                        <img src="/media/{{p.product_pic}}" alt="">
+                        <h6>Product: {{p.product_name}}</h6>
+                        <h6>Category: {{p.product_category}}</h6>
+                        <h6>Price: ₹{{p.product_price}}</h6>
+                        <h6>Farmer: {{p.farmer.name}} ({{p.farmer.city}})</h6>
+                        <a href="https://wa.me/+91{{p.farmer.phone}}" target="_blank" class="btn btn-outline-success btn-sm mt-2">
+                            WhatsApp Farmer
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <h3 class="text-center">No Products Available 😊</h3>
+                {% endif %}
             </div>
-          
-            
-        
         </div>
+    </div>
 
-    
-    <!-- foooter code  start -->
-    {%include 'agro_app/common/footer.html'%}
-    <!-- footer code ends -->
-
-
+    <!-- Footer -->
+    {% include 'agro_app/common/footer.html' %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
-
-
 </body>
 
 </html>

@@ -5,156 +5,137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User edit profile</title>
-  {%include 'agro_app/common/common_css.html'%}
+  <title>User Edit Profile</title>
+  {% include 'agro_app/common/common_css.html' %}
   <style>
     .flex-container {
-      width: 50%;
-      height: 600px;
-      /* background-color: aqua; */
-      flex-direction: column;
-      margin: auto;
-      margin-top: 100px;
-
+      max-width: 800px;
+      width: 100%;
+      margin: 100px auto;
+      padding: 20px;
     }
 
     .image-div {
-      width: 25%;
+      width: 150px;
       height: 150px;
-      /* background-color: blueviolet; */
       border: 5px solid black;
-      border-radius: 50px;
-      margin: auto;
-      margin-top: 10px;
-      margin-bottom: 20px;
+      border-radius: 20px;
+      margin: 0 auto 20px;
+      overflow: hidden;
     }
 
     .image-div img {
       width: 100%;
       height: 100%;
-      border-radius: 20px;
-      /* margin-bottom: 20px; */
-    }
-
-    .profile-div {
-      width: 50%;
-      height: 200px;
-      /* background-color: beige; */
-      margin: auto;
+      object-fit: cover;
     }
 
     h6 {
       color: rgb(62, 204, 180);
-      margin-left: 30px;
       line-height: 30px;
-      font-size: large;
+      font-size: 1rem;
+      margin-top: 15px;
     }
 
     .bgimage {
-      background-image: url("{% static 'agro_app/images/bg1.jpg'  %}");
+      background-image: url("{% static 'agro_app/images/bg1.jpg' %}");
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      padding-top: 80px;
+    }
+
+    /* ✅ Mobile adjustments */
+    @media (max-width: 768px) {
+      .flex-container {
+        margin: 50px 15px;
+        padding: 15px;
+      }
+
+      .profile-div {
+        width: 100% !important;
+      }
+
+      .image-div {
+        width: 120px;
+        height: 120px;
+      }
+
+      h6 {
+        font-size: 0.9rem;
+        margin-left: 0;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- header page code -->
-  <style>
-    .nav-link {
-      background-color: rgba(29, 76, 11, 0.473);
-
-    }
-  </style>
-  <nav class="navbar navbar-dark  fixed-top" style="background-color: rgba(29, 76, 11, 0.473);">
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark fixed-top" style="background-color: rgba(29, 76, 11, 0.473);">
     <div class="container-fluid">
-      <!-- <a class="navbar-brand" href="#">Logo</a>  -->
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
         aria-controls="offcanvasDarkNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDarkNavbar"
-        aria-labelledby="offcanvasDarkNavbarLabel" style="background-color: rgba(29, 76, 11, 0.473); width: 20%;">
+        aria-labelledby="offcanvasDarkNavbarLabel" style="background-color: rgba(29, 76, 11, 0.473); width: 250px;">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><b>Hello Farmer</b></h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
             aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/farmer_home/">
-
-                <i class="fas fa-home"></i> Home</a>
-            </li>
-
-
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/add_product/">Add product</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/my_product/">My product</a>
-            </li>
-            <!-- <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Link2</a>
-                </li> -->
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/farmer_logout/">Logout</a>
-
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link active" href="/farmer_home/"><i class="fas fa-home"></i> Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/add_product/">Add product</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/my_product/">My product</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/farmer_logout/">Logout</a></li>
+          </ul>
         </div>
       </div>
     </div>
   </nav>
-  
-           
 
-
+  <!-- Profile Section -->
   <div class="bgimage">
-    <!-- header page code ends  -->
     <div class="main-div">
-      <!-- profile code start -->
-       <form action="/farmer_edit_profile/" method="post" enctype="multipart/form-data">
-        {%csrf_token%}
-      <div class="flex-container">
-        <div class="image-div">
-          <img src="/media/{{farmer_key.profile_pic}}" alt="">
-          <input type="file" name="pic" >
-        </div>
-        <div class="profile-div">
-          <h6><i class="fa-solid fa-envelope"></i>:{{farmer_key.email}}</h6>
-          <h6>Name:
-            <input type="text" name="name" class="form-control" required value="{{farmer_key.name}}">
+      <form action="/farmer_edit_profile/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="flex-container bg-light rounded shadow p-4">
+          <div class="image-div">
+            <img src="/media/{{farmer_key.profile_pic}}" alt="Profile Picture">
+          </div>
+          <div class="mb-3 text-center">
+            <input type="file" name="pic" class="form-control">
+          </div>
 
+          <div class="profile-div">
+            <h6><i class="fa-solid fa-envelope"></i> {{farmer_key.email}}</h6>
 
+            <h6>Name:</h6>
+            <input type="text" name="name" class="form-control mb-2" required value="{{farmer_key.name}}">
 
-          </h6>
-          <h6>Phone number<i class="fa-solid fa-phone"></i>:
-            <input type="number" name="phone" class="form-control" required value="{{farmer_key.phone}}">
+            <h6><i class="fa-solid fa-phone"></i> Phone number:</h6>
+            <input type="number" name="phone" class="form-control mb-2" required value="{{farmer_key.phone}}">
 
-          </h6>
-          <h6>City:
-            <input type="text" name="city" class="form-control" required value=" {{farmer_key.city}}">
-          </h6>
-          <h6>address:
-            <textarea name="address" class="form-control" required>{{farmer_key.address}}</textarea>
-          </h6>
-          <div class="text-center">
-            <button class="btn btn-danger">Edit_Profile</button>
+            <h6>City:</h6>
+            <input type="text" name="city" class="form-control mb-2" required value="{{farmer_key.city}}">
 
+            <h6>Address:</h6>
+            <textarea name="address" class="form-control mb-3" required>{{farmer_key.address}}</textarea>
+
+            <div class="text-center">
+              <button class="btn btn-success w-100">Update Profile</button>
+            </div>
           </div>
         </div>
-
-      </div>
       </form>
-      <!-- profile code end -->
-
     </div>
   </div>
 
   {% include 'agro_app/common/footer.html' %}
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

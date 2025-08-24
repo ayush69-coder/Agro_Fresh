@@ -1,80 +1,88 @@
 <!DOCTYPE html>
-{%load static%}
+{% load static %}
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title style="text-align: center;">contact us </title>
-  {% include 'agro_app/common/common_css.html'%}
+  <title>Contact Us</title>
+  {% include 'agro_app/common/common_css.html' %}
   <style>
     .bgimage {
       background-image: url("{% static 'agro_app/images/bg2.jpg' %}");
       background-repeat: no-repeat;
       background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+    }
+
+    .contact-form {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 
 <body>
-
-
+  <div class="main-div">
     <div class="bgimage">
-      
-      {%include 'agro_app/common/header.html'%}
-        {% if messages %}
-    {% for m in messages %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert"
-      style="width: 50%;margin: auto;text-align: center; margin-top: 60px;">
-      <strong>{{m}}</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 
-    {% endfor %}
-    {% endif %}
+      {% include 'agro_app/common/header.html' %}
 
-      <h1 style="text-align: center;">Contact page</h1>
-     
-      <div
-        style="margin: 5%;margin-left: 20pc; margin-right: 20pc;  margin-top: 0%;padding: 05%;">
-        <form action="/contact_us/" method="post">
-          {%csrf_token%}
-          <label for="name" style="flex-direction: column;">Name:</label>
-          <input type="text" id="name" name="name" placeholder="Enter your name">
-
-
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
-              name="email" required>
-          </div>
-
-          <label for="name" style="flex-direction: column;">Contact No.:</label>
-          <input type="number" id="name" name="phone" placeholder="Enter your contact number">
-
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label" n>Query</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Query"></textarea>
-          </div>
-
-
-
-          <button type="submit" style="text-align: center;">Submit</button>
-        </form>
+      {% if messages %}
+      {% for m in messages %}
+      <div class="alert alert-danger alert-dismissible fade show mx-auto mt-4" role="alert" style="max-width: 600px;">
+        <strong>{{ m }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
+      {% endfor %}
+      {% endif %}
+
+      <div class="container py-5">
+        <h1 class="text-center mb-4">Contact Page</h1>
+        <div class="row justify-content-center">
+          <div class="col-lg-6 col-md-8 col-12">
+            <form action="/contact_us/" method="post" class="contact-form">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1"
+                  placeholder="name@example.com" name="email" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="phone" class="form-label">Contact No.:</label>
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your contact number" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Query</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="Query"></textarea>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-success px-4">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 
+  {% include 'agro_app/common/footer.html' %}
 
-    {%include 'agro_app/common/footer.html'%}
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-      crossorigin="anonymous"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

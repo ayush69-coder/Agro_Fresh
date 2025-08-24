@@ -5,74 +5,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Farmer Login</title>
-  {%include 'agro_app/common/common_css.html'%}
+  <title>Farmer Profile</title>
+  {% include 'agro_app/common/common_css.html' %}
   <style>
-    .flex-container {
-      width: 50%;
-      height: 600px;
-      /* background-color: aqua; */
-      flex-direction: column;
-      margin: auto;
-      margin-top: 100px;
-
-    }
-
-    .image-div {
-      width: 25%;
-      height: 150px;
-      /* background-color: blueviolet; */
-      border: 5px solid black;
-      border-radius: 50px;
-      margin: auto;
-      margin-top: 10px;
-      margin-bottom: 20px;
-    }
-
-    .image-div img {
-      width: 100%;
-      height: 100%;
-      border-radius: 20px;
-      /* margin-bottom: 20px; */
-    }
-
-    .profile-div {
-      width: 50%;
-      height: 200px;
-      /* background-color: beige; */
-      margin: auto;
-    }
-
-    h6 {
-      color: rgb(62, 204, 180);
-      margin-left: 30px;
-      line-height: 30px;
-      font-size: large;
-    }
-
     .bgimage {
-      background-image: url("{% static 'agro_app/images/bg1.jpg'  %}");
+      background-image: url("{% static 'agro_app/images/bg1.jpg' %}");
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+    }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .profile-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #333;
+      margin-bottom: 1rem;
+    }
+
+    .profile-card h6 {
+      color: #1b6e54;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
     }
   </style>
 </head>
 
 <body>
-  <!-- header page code -->
-  <style>
-    .nav-link {
-      background-color: rgba(29, 76, 11, 0.473);
-
-    }
-  </style>
-  <nav class="navbar navbar-dark  fixed-top" style="background-color: rgba(29, 76, 11, 0.473);">
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark fixed-top" style="background-color: rgba(29, 76, 11, 0.7);">
     <div class="container-fluid">
-      <!-- <a class="navbar-brand" href="#">Logo</a>  -->
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
         aria-controls="offcanvasDarkNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDarkNavbar"
-        aria-labelledby="offcanvasDarkNavbarLabel" style="background-color: rgba(29, 76, 11, 0.473); width: 20%;">
+      <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+        aria-labelledby="offcanvasDarkNavbarLabel" style="width: 250px;">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><b>Hello Farmer</b></h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
@@ -80,68 +57,43 @@
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/farmer_home/">
-
-                <i class="fas fa-home"></i> Home</a>
-            </li>
-
-
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/add_product/">Add product</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/my_product/">My product</a>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/farmer_edit_profile/">edit profile</a>
-            </li>
-            </li>
-            <!-- <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Link2</a>
-                </li> -->
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/farmer_logout/">Logout</a>
-
+            <li class="nav-item"><a class="nav-link" href="/farmer_home/"><i class="fas fa-home"></i> Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/add_product/">Add product</a></li>
+            <li class="nav-item"><a class="nav-link" href="/my_product/">My product</a></li>
+            <li class="nav-item"><a class="nav-link" href="/farmer_edit_profile/">Edit profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="/farmer_logout/">Logout</a></li>
+          </ul>
         </div>
       </div>
     </div>
   </nav>
-  <div class="bgimage">
-     <div class="main-div">
-      <div style="margin-top: 4%;">
-       {% if messages %}
-    {% for m in messages %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert"
-      style="width: 50%;margin: auto;text-align: center;">
-      <strong>{{m}}</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 
-    {% endfor %}
-    {% endif %}
-    </div>
-   
-
-
-    <!-- header page code ends  -->
-   
-      <!-- profile code start -->
-      <div class="flex-container">
-        <div class="image-div">
-          <img src="/media/{{farmer_key.profile_pic}}" alt="">
-        </div>
-        <div class="profile-div">
-          <h6>Name:{{farmer_key.name}}</h6>
-          <h6><i class="fa-solid fa-envelope"></i>:{{farmer_key.email}}</h6>
-          <h6><i class="fa-solid fa-phone"></i>:{{farmer_key.phone}}</h6>
-          <h6>City:{{farmer_key.city}}</h6>
-          <h6>address:{{farmer_key.address}}</h6>
-
-        </div>
-
+  <!-- Page Content -->
+  <div class="bgimage d-flex align-items-center justify-content-center">
+    <div class="container py-5">
+      <!-- Flash messages -->
+      {% if messages %}
+      {% for m in messages %}
+      <div class="alert alert-danger alert-dismissible fade show mx-auto" style="max-width: 600px;" role="alert">
+        <strong>{{ m }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-      <!-- profile code end -->
+      {% endfor %}
+      {% endif %}
 
+      <!-- Profile Card -->
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-12">
+          <div class="profile-card">
+            <img src="/media/{{ farmer_key.profile_pic }}" alt="Profile Picture">
+            <h6><b>Name:</b> {{ farmer_key.name }}</h6>
+            <h6><i class="fa-solid fa-envelope"></i> {{ farmer_key.email }}</h6>
+            <h6><i class="fa-solid fa-phone"></i> {{ farmer_key.phone }}</h6>
+            <h6><b>City:</b> {{ farmer_key.city }}</h6>
+            <h6><b>Address:</b> {{ farmer_key.address }}</h6>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -150,7 +102,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
     crossorigin="anonymous"></script>
-
 </body>
 
 </html>
